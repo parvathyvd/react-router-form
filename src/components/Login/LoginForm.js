@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Messages from '../Messages/Messages';
 
 class LoginForm extends Component{
     state={
@@ -17,8 +18,8 @@ class LoginForm extends Component{
 
     validate = data => {
         const errors = {};
-        if(!data.password) errors.password ="can't be blank";
-        if(!data.email) errors.email ="can't be blank";
+        if(!data.password) errors.password = "Password field can't be blank";
+        if(!data.email) errors.email = "Please enter an email";
         return errors;
     }
 
@@ -45,7 +46,7 @@ class LoginForm extends Component{
                  onChange = {this.onChangeHandler}
                  value={data.email}
                  />
-                 {errors.email ? <p style={{color:'red'}}>{errors.email}</p> : ''}
+                {errors.email && <Messages text={errors.email}/>}
              </div>
              <div className="form-group">
                  <label htmlFor="password">Password</label>
@@ -57,7 +58,7 @@ class LoginForm extends Component{
                  onChange = {this.onChangeHandler}
                  value={data.password}
                  />
-                {errors.password ? <p style={{color:'red'}}>{errors.password}</p> : ''}
+                {errors.password && <Messages text={errors.password}/>}
              </div>
              <button type="submit" className="btn btn-primary">Submit</button>
              </form>
